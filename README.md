@@ -1,4 +1,4 @@
-# MOOST multilingual research website / MOOST 多语言科研主页
+# MOOST
 
 ## Public website / 公开访问
 

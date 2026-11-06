@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>MOOST: A Majority-Oriented Over-Sampling Technique for Aero-Engine Anomaly Detection</title>
+<meta content="MOOST — a majority-oriented over-sampling technique and deep self-attention feature augmentation network (DSAFAN) for imbalanced aero-engine anomaly detection." name="description"/>
+<link href="assets/site.css" rel="stylesheet"/><link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/><meta content="#081a2c" name="theme-color"/></head>
+<body id="top"><div class="nav-shell"><nav aria-label="Main navigation" class="site-nav"><a aria-label="MOOST home" class="brand" href="#top"><span aria-hidden="true" class="brand-mark"><i></i><i></i><i></i></span><span class="brand-type">MOOST <small>RESEARCH / PHM</small></span></a><div class="nav-links"><a data-ui="navAbstract" href="#abstract">Abstract</a><a data-ui="navMethod" href="#method">Method</a><a data-ui="navResults" href="#results">Results</a><a data-ui="navCite" href="#bibtex">Citation</a></div><div class="language-area"><label for="lang-select"><span aria-hidden="true" class="lang-icon">◎</span><span class="sr-only" data-ui="language">Language</span></label><select aria-label="Language / 语言 / Langue / Язык / اللغة" id="lang-select"><option value="en">English</option><option value="zh">中文</option><option value="ru">Русский</option><option value="fr">Français</option><option value="ar">العربية</option></select></div></nav></div>
+<header class="hero">
+<div class="hero-inner">
+<span class="badge" data-en="Aero-Engine Anomaly Detection" data-i18n="0" data-zh="航空发动机异常检测">Aero-Engine Anomaly Detection</span>
+<h1 data-en="MOOST: A Majority-Oriented Over-Sampling Technique for Aero-Engine Anomaly Detection" data-i18n="1" data-zh="MOOST：面向多数类过采样技术及其在航空发动机异常检测中的应用">MOOST: A Majority-Oriented Over-Sampling Technique for Aero-Engine Anomaly Detection</h1>
+<p class="authors">Dan Liu · Haibo Gao · Lin Lin · Song Fu · Minghang Zhao · Shisheng Zhong</p>
+<p class="affil" data-en="Harbin Institute of Technology, Harbin, China" data-i18n="2" data-zh="哈尔滨工业大学，哈尔滨，中国">Harbin Institute of Technology, Harbin, China</p>
+<p class="venue">Reliability Engineering &amp; System Safety · Vol. 274 · 2026</p>
+<div class="buttons">
+<a class="btn btn-primary" href="https://doi.org/10.1016/j.ress.2026.112377" rel="noopener" target="_blank">
+<span data-en="Paper (DOI)" data-i18n="3" data-zh="论文 (DOI)">Paper (DOI)</span>
+</a>
+<a class="btn btn-ghost" href="https://www.sciencedirect.com/science/article/pii/S0951832026001936" rel="noopener" target="_blank">
+<span data-en="Publisher" data-i18n="4" data-zh="出版商">Publisher</span>
+</a>
+<a class="btn btn-ghost" href="#bibtex">
+<span data-en="BibTeX" data-i18n="5" data-zh="BibTeX 引用">BibTeX</span>
+</a>
+</div>
+</div>
+</header>
+<main class="site-main">
+<!-- metrics dashboard -->
+<section><div class="wrap section-inner">
+<div class="metrics-kicker"><span class="eyebrow" data-ui="evidence">EVIDENCE / NUMBERS</span><span class="kicker-rule"></span><span class="kicker-note" data-ui="metricnote">Reported results in the supplied manuscript</span></div><div class="metrics">
+<div class="metric">
+<div class="label" data-en="Average TPR · anomaly recall" data-i18n="6" data-zh="平均 TPR · 异常识别率">Average TPR · anomaly recall</div>
+<div class="value">89.09<span class="unit">%</span></div>
+<div class="sub" data-en="+14.04 percentage points vs. SL-SMOTE (2nd)" data-i18n="7" data-zh="较第二名 SL-SMOTE 提高 14.04 个百分点">+14.04 percentage points vs. SL-SMOTE (2nd)</div>
+</div>
+<div class="metric green">
+<div class="label" data-en="Average TNR · normal recall" data-i18n="8" data-zh="平均 TNR · 正常识别率">Average TNR · normal recall</div>
+<div class="value">92.65<span class="unit">%</span></div>
+<div class="sub" data-en="closely balanced with anomaly detection" data-i18n="9" data-zh="与异常检测能力保持均衡">closely balanced with anomaly detection</div>
+</div>
+<div class="metric">
+<div class="label" data-en="Average BA · balanced accuracy" data-i18n="10" data-zh="平均 BA · 平衡准确率">Average BA · balanced accuracy</div>
+<div class="value">90.87<span class="unit">%</span></div>
+<div class="sub" data-en="best comprehensive performance" data-i18n="11" data-zh="综合检测性能最优">best comprehensive performance</div>
+</div>
+<div class="metric amber">
+<div class="label" data-en="BA gain vs. TimeGAN" data-i18n="12" data-zh="相对 TimeGAN 的 BA 提升">BA gain vs. TimeGAN</div>
+<div class="value">+8.12<span class="unit">pp</span></div>
+<div class="sub" data-en="largest margin among all baselines" data-i18n="13" data-zh="在所有基线中提升幅度最大">largest margin among all baselines</div>
+</div>
+<div class="metric">
+<div class="label" data-en="Samples · engines" data-i18n="14" data-zh="样本数 · 发动机数">Samples · engines</div>
+<div class="value">1017</div>
+<div class="sub" data-en="954 normal / 63 abnormal · 63 engines" data-i18n="15" data-zh="954 正常 / 63 异常 · 63 台发动机">954 normal / 63 abnormal · 63 engines</div>
+</div>
+<div class="metric green">
+<div class="label" data-en="Methods benchmarked" data-i18n="16" data-zh="对比方法数">Methods benchmarked</div>
+<div class="value">10</div>
+<div class="sub" data-en="baseline + 8 over-sampling + DSAFAN" data-i18n="17" data-zh="基线 + 8 种过采样 + DSAFAN">baseline + 8 over-sampling + DSAFAN</div>
+</div>
+</div>
+</div></section>
+<!-- teaser -->
+<section class="story-section"><div class="wrap section-inner">
+<div class="story-layout"><div class="story-copy"><span class="eyebrow" data-ui="overview">Research at a glance</span><p class="claim">
+<span data-en="MOOST turns imbalanced aero-engine data into balanced, separable features — generating out-of-distribution anomalies under the guidance of normal data." data-i18n="18" data-zh="MOOST 在正常数据引导下生成分布外异常，将不平衡的航空发动机数据转化为均衡且可分离的特征。">MOOST turns imbalanced aero-engine data into balanced, separable features — generating out-of-distribution anomalies under the guidance of normal data.</span>
+</p><div aria-hidden="true" class="story-pills"><span>MOOST</span><span>DSAFAN</span><span>PHM / AI</span></div></div><figure class="figure figure--portrait figure--hero"><button aria-label="Enlarge figure" class="figure-zoom" data-ui-aria="enlarge" type="button"><img alt="Fig. 1 — Working principle of the DSAFAN-based supervised anomaly detection method" decoding="async" height="1323" loading="lazy" src="images/fig1-framework.jpg" width="886"/><span aria-hidden="true" class="zoom-icon">↗</span></button>
+<figcaption>
+<span data-en="&lt;b&gt;Fig. 1&lt;/b&gt; — Working principle of the DSAFAN-based supervised anomaly detection framework (feature extraction → feature augmentation → feature classification)." data-i18n="19" data-zh="&lt;b&gt;图 1&lt;/b&gt; — 基于 DSAFAN 的有监督异常检测框架工作原理（特征提取 → 特征增强 → 特征分类）。"><b>Fig. 1</b> — Working principle of the DSAFAN-based supervised anomaly detection framework (feature extraction → feature augmentation → feature classification).</span>
+</figcaption>
+</figure></div></div></section>
+<!-- abstract -->
+<section class="section-alt" id="abstract"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="01 · Abstract" data-i18n="20" data-zh="01 · 摘要">01 · Abstract</span>
+<h2 data-en="Abstract" data-i18n="21" data-zh="摘要">Abstract</h2>
+</div>
+<div class="abstract">
+<p data-en="To address the challenges of enhancing feature learning from highly imbalanced industrial data and achieving superior generalization, this paper develops a novel deep neural network architecture — the &lt;b&gt;deep self-attention feature augmentation network (DSAFAN)&lt;/b&gt;. The &lt;b&gt;majority-oriented over-sampling technique (MOOST)&lt;/b&gt; is inserted into the architecture as an auxiliary tool for minority-class feature augmentation." data-i18n="22" data-zh="为解决在高度不平衡的工业数据上增强特征学习能力并取得优异泛化性能的难题，本文提出一种新颖的深度神经网络架构——&lt;b&gt;深度自注意力特征增强网络（DSAFAN）&lt;/b&gt;，并将 &lt;b&gt;面向多数类的过采样技术（MOOST）&lt;/b&gt;作为少数类特征增强的辅助工具嵌入该架构。">To address the challenges of enhancing feature learning from highly imbalanced industrial data and achieving superior generalization, this paper develops a novel deep neural network architecture — the <b>deep self-attention feature augmentation network (DSAFAN)</b>. The <b>majority-oriented over-sampling technique (MOOST)</b> is inserted into the architecture as an auxiliary tool for minority-class feature augmentation.</p>
+<p data-en="Since it is extremely difficult to enhance the completeness of minority-class data, MOOST generates &lt;b&gt;out-of-distribution synthetic data with abnormal characteristics&lt;/b&gt; under the guidance of normal data, effectively expanding the advantageous region occupied by existing anomalies. Furthermore, DSAFAN leverages a &lt;b&gt;multi-head self-attention mechanism&lt;/b&gt; for feature extraction, significantly improving temporal feature learning for complex data." data-i18n="23" data-zh="考虑到极难提升少数类数据的完备性，MOOST 在正常数据的引导下生成具有异常特征的&lt;b&gt;分布外合成数据&lt;/b&gt;，有效扩展了已有异常所占的优势区域；同时 DSAFAN 利用&lt;b&gt;多头自注意力机制&lt;/b&gt;进行特征提取，显著提升了对复杂数据的时间特征学习能力。">Since it is extremely difficult to enhance the completeness of minority-class data, MOOST generates <b>out-of-distribution synthetic data with abnormal characteristics</b> under the guidance of normal data, effectively expanding the advantageous region occupied by existing anomalies. Furthermore, DSAFAN leverages a <b>multi-head self-attention mechanism</b> for feature extraction, significantly improving temporal feature learning for complex data.</p>
+<p data-en="The effectiveness of the proposed methods is validated through comprehensive experiments on real-world aero-engine operation data." data-i18n="24" data-zh="最终，在真实航空发动机运行数据上的综合实验验证了所提方法的有效性。">The effectiveness of the proposed methods is validated through comprehensive experiments on real-world aero-engine operation data.</p>
+<p class="kws"><b data-en="Keywords:" data-i18n="25" data-zh="关键词：">Keywords:</b> <span data-en="aero-engine anomaly detection; inter-class imbalance; inter-class overlap; majority-oriented over-sampling; deep self-attention feature-augmentation network" data-i18n="26" data-zh="航空发动机异常检测；类间不平衡；类间重叠；面向多数类过采样；深度自注意力特征增强网络">aero-engine anomaly detection; inter-class imbalance; inter-class overlap; majority-oriented over-sampling; deep self-attention feature-augmentation network</span></p>
+</div>
+</div></section>
+<!-- problem / introduction -->
+<section id="problem"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="02 · The Problem" data-i18n="27" data-zh="02 · 研究问题">02 · The Problem</span>
+<h2 data-en="Why imbalanced aero-engine data is hard" data-i18n="28" data-zh="航空发动机不平衡数据为何困难">Why imbalanced aero-engine data is hard</h2>
+<p class="lede" data-en="Real aero-engine anomalies are rare, incomplete, and early-stage deviations overlap heavily with normal operation." data-i18n="29" data-zh="真实的航空发动机异常既稀少又不完整，且早期异常与正常运行高度重叠。">Real aero-engine anomalies are rare, incomplete, and early-stage deviations overlap heavily with normal operation.</p>
+</div>
+<div class="cards">
+<div class="card">
+<span class="idx" data-ui="challenge01">CHALLENGE 01</span>
+<h3 data-en="Inter-class imbalance" data-i18n="30" data-zh="类间不平衡">Inter-class imbalance</h3>
+<p data-en="Deep models trained with cross-entropy loss are dominated by the abundant normal samples; the scarce abnormal samples are effectively ignored during optimization, leaving anomaly detection poor." data-i18n="31" data-zh="使用交叉熵损失训练的深度模型被大量的正常样本主导，稀缺的异常样本在优化中被忽略，导致异常检测能力不足。">Deep models trained with cross-entropy loss are dominated by the abundant normal samples; the scarce abnormal samples are effectively ignored during optimization, leaving anomaly detection poor.</p>
+</div>
+<div class="card">
+<span class="idx" data-ui="challenge02">CHALLENGE 02</span>
+<h3 data-en="Inter-class overlap" data-i18n="32" data-zh="类间重叠">Inter-class overlap</h3>
+<p data-en="Early-stage anomalies barely deviate from normal data. Augmenting directly in the raw space can push synthesized samples into the “danger zone”, producing mislabeled noise that misleads training." data-i18n="33" data-zh="早期异常与正常数据几乎无差异，直接在原始空间增强可能把合成样本推入“危险区”，产生误导训练的错误标签噪声。">Early-stage anomalies barely deviate from normal data. Augmenting directly in the raw space can push synthesized samples into the “danger zone”, producing mislabeled noise that misleads training.</p>
+</div>
+<div class="card">
+<span class="idx" data-ui="challenge03">CHALLENGE 03</span>
+<h3 data-en="Incomplete abnormal data" data-i18n="34" data-zh="异常数据不完整">Incomplete abnormal data</h3>
+<p data-en="Collected anomalies are only a fraction of all possible fault modes. Traditional in-distribution augmentation cannot synthesize out-of-distribution anomalies near decision boundaries, limiting generalization." data-i18n="35" data-zh="采集到的异常只是所有可能故障模式的一小部分；传统的分布内增强无法在决策边界附近合成分布外异常，限制了泛化能力。">Collected anomalies are only a fraction of all possible fault modes. Traditional in-distribution augmentation cannot synthesize out-of-distribution anomalies near decision boundaries, limiting generalization.</p>
+</div>
+<div class="card">
+<span class="idx" data-ui="challenge04">CHALLENGE 04</span>
+<h3 data-en="Complex temporal patterns" data-i18n="36" data-zh="复杂时序模式">Complex temporal patterns</h3>
+<p data-en="Aero-engine monitoring data is multi-dimensional time series whose parameter relationships are highly complex, making meaningful abnormal patterns hard to extract directly." data-i18n="37" data-zh="航空发动机监测数据是多维时序数据，参数间关系极其复杂，难以直接提取有意义的异常模式。">Aero-engine monitoring data is multi-dimensional time series whose parameter relationships are highly complex, making meaningful abnormal patterns hard to extract directly.</p>
+</div>
+</div>
+</div></section>
+<!-- highlights -->
+<section class="section-alt" id="highlights"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="03 · Highlights" data-i18n="38" data-zh="03 · 核心亮点">03 · Highlights</span>
+<h2 data-en="Key contributions" data-i18n="39" data-zh="核心贡献">Key contributions</h2>
+</div>
+<div class="cards">
+<div class="card">
+<span class="idx">C-1</span>
+<h3 data-en="A new supervised framework (DSAFAN)" data-i18n="40" data-zh="新颖的有监督框架 DSAFAN">A new supervised framework (DSAFAN)</h3>
+<p data-en="Suppresses inter-class overlap and balances the loss between minority and majority classes, directly addressing inter-class imbalance." data-i18n="41" data-zh="在抑制类间重叠的同时平衡少数类与多数类样本的损失差异，直接解决类间不平衡问题。">Suppresses inter-class overlap and balances the loss between minority and majority classes, directly addressing inter-class imbalance.</p>
+</div>
+<div class="card">
+<span class="idx">C-2</span>
+<h3 data-en="MOOST as a plug-in module" data-i18n="42" data-zh="可插拔的 MOOST 模块">MOOST as a plug-in module</h3>
+<p data-en="MOOST integrates seamlessly into deep architectures as a feature-augmentation module, effectively eliminating biased learning in imbalanced scenarios." data-i18n="43" data-zh="MOOST 可作为特征增强模块无缝嵌入深度学习架构，有效消除不平衡场景下的偏置学习。">MOOST integrates seamlessly into deep architectures as a feature-augmentation module, effectively eliminating biased learning in imbalanced scenarios.</p>
+</div>
+<div class="card">
+<span class="idx">C-3</span>
+<h3 data-en="Majority-guided outward synthesis" data-i18n="44" data-zh="多数类引导的外向合成">Majority-guided outward synthesis</h3>
+<p data-en="Guided by the relatively complete majority-class data, MOOST synthesizes minority data outward to extend their advantageous zones, boosting generalization." data-i18n="45" data-zh="在相对完备的多数类数据引导下，MOOST 将少数类数据向外合成以扩展其优势区域，提升泛化能力。">Guided by the relatively complete majority-class data, MOOST synthesizes minority data outward to extend their advantageous zones, boosting generalization.</p>
+</div>
+<div class="card">
+<span class="idx">C-4</span>
+<h3 data-en="Real-world validation" data-i18n="46" data-zh="真实数据验证">Real-world validation</h3>
+<p data-en="Comprehensive experiments on real aero-engine operation data from 63 engines demonstrate DSAFAN's superior detection performance." data-i18n="47" data-zh="在 63 台真实航空发动机运行数据上的综合实验，验证了 DSAFAN 的优越检测性能。">Comprehensive experiments on real aero-engine operation data from 63 engines demonstrate DSAFAN's superior detection performance.</p>
+</div>
+</div>
+</div></section>
+<!-- methodology -->
+<section id="method"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="04 · Methodology" data-i18n="48" data-zh="04 · 方法">04 · Methodology</span>
+<h2 data-en="The DSAFAN framework" data-i18n="49" data-zh="DSAFAN 框架">The DSAFAN framework</h2>
+<p class="lede" data-en="DSAFAN has three modules: a multi-head self-attention feature extractor, the MOOST feature-augmentation module, and a Softmax classifier trained on a balanced feature set." data-i18n="50" data-zh="DSAFAN 包含三个模块：多头自注意力特征提取器、MOOST 特征增强模块，以及在均衡特征集上训练的 Softmax 分类器。">DSAFAN has three modules: a multi-head self-attention feature extractor, the MOOST feature-augmentation module, and a Softmax classifier trained on a balanced feature set.</p>
+</div>
+<div class="grid-2">
+<figure class="figure"><button aria-label="Enlarge figure" class="figure-zoom" data-ui-aria="enlarge" type="button"><img alt="Fig. 2 — Schematic diagram of the feature extraction module" decoding="async" height="592" loading="lazy" src="images/fig2-feature-extraction.jpg" width="1191"/><span aria-hidden="true" class="zoom-icon">↗</span></button>
+<figcaption><span data-en="&lt;b&gt;Fig. 2&lt;/b&gt; — Feature extraction module: Transformer encoder with multi-head self-attention, short-cuts &amp; layer normalization, and a feed-forward layer." data-i18n="51" data-zh="&lt;b&gt;图 2&lt;/b&gt; — 特征提取模块：包含多头自注意力、残差连接与层归一化、前馈层的 Transformer 编码器。"><b>Fig. 2</b> — Feature extraction module: Transformer encoder with multi-head self-attention, short-cuts &amp; layer normalization, and a feed-forward layer.</span></figcaption>
+</figure>
+<figure class="figure"><button aria-label="Enlarge figure" class="figure-zoom" data-ui-aria="enlarge" type="button"><img alt="Fig. 3 — Schematic diagram of the multi-head attention mechanism" decoding="async" height="727" loading="lazy" src="images/fig3-multihead-attention.jpg" width="960"/><span aria-hidden="true" class="zoom-icon">↗</span></button>
+<figcaption><span data-en="&lt;b&gt;Fig. 3&lt;/b&gt; — Multi-head self-attention: m&lt;sub&gt;H&lt;/sub&gt; parallel attention heads capture richer temporal features across mapping sub-spaces." data-i18n="52" data-zh="&lt;b&gt;图 3&lt;/b&gt; — 多头自注意力：m&lt;sub&gt;H&lt;/sub&gt; 个并行注意力头在不同映射子空间中捕捉更丰富的时序特征。"><b>Fig. 3</b> — Multi-head self-attention: m<sub>H</sub> parallel attention heads capture richer temporal features across mapping sub-spaces.</span></figcaption>
+</figure>
+</div>
+<h3 data-en="MOOST: majority-oriented over-sampling" data-i18n="53" data-zh="MOOST：面向多数类的过采样" style="font-size:20px;color:var(--navy-800);margin:8px 0 6px">MOOST: majority-oriented over-sampling</h3>
+<p class="lead" data-en="Instead of interpolating between two abnormal samples (SMOTE), MOOST anchors each abnormal sample to its nearest &lt;b&gt;normal&lt;/b&gt; neighbors and synthesizes &lt;b&gt;outward&lt;/b&gt;, so new samples extend the abnormal region rather than falling into the overlapping danger zone." data-i18n="54" data-zh="与在两个异常样本间插值（SMOTE）不同，MOOST 将每个异常样本锚定到其最近的&lt;b&gt;正常&lt;/b&gt;邻居并&lt;b&gt;向外&lt;/b&gt;合成，使新样本扩展异常区域，而非落入重叠的危险区。">Instead of interpolating between two abnormal samples (SMOTE), MOOST anchors each abnormal sample to its nearest <b>normal</b> neighbors and synthesizes <b>outward</b>, so new samples extend the abnormal region rather than falling into the overlapping danger zone.</p>
+<figure class="figure"><button aria-label="Enlarge figure" class="figure-zoom" data-ui-aria="enlarge" type="button"><img alt="Fig. 4 — Schematic diagram of the synthesis process of (a) SMOTE and (b) MOOST in the feature space" decoding="async" height="745" loading="lazy" src="images/fig4-smote-vs-moost.jpg" width="1399"/><span aria-hidden="true" class="zoom-icon">↗</span></button>
+<figcaption><span data-en="&lt;b&gt;Fig. 4&lt;/b&gt; — Synthesis in the feature space: (a) SMOTE interpolates in-distribution; (b) MOOST synthesizes outward toward the normal region to extend the anomaly's advantageous zone." data-i18n="55" data-zh="&lt;b&gt;图 4&lt;/b&gt; — 特征空间中的合成过程：(a) SMOTE 做分布内插值；(b) MOOST 朝正常区域向外合成，以扩展异常的优势区域。"><b>Fig. 4</b> — Synthesis in the feature space: (a) SMOTE interpolates in-distribution; (b) MOOST synthesizes outward toward the normal region to extend the anomaly's advantageous zone.</span></figcaption>
+</figure>
+<h4 data-en="MOOST · 5 steps" data-i18n="56" data-zh="MOOST · 五个步骤" style="font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin:26px 0 4px">MOOST · 5 steps</h4>
+<ol class="steps">
+<li data-en="Compute the Euclidean distances from abnormal feature &lt;b&gt;h&lt;/b&gt; to all normal features and sort them into &lt;b&gt;Z&lt;sub&gt;N&lt;/sub&gt;&lt;sup&gt;h&lt;/sup&gt;&lt;/b&gt;." data-i18n="57" data-zh="计算异常特征 &lt;b&gt;h&lt;/b&gt; 与所有正常特征之间的欧氏距离并排序，得到 &lt;b&gt;Z&lt;sub&gt;N&lt;/sub&gt;&lt;sup&gt;h&lt;/sup&gt;&lt;/b&gt;。">Compute the Euclidean distances from abnormal feature <b>h</b> to all normal features and sort them into <b>Z<sub>N</sub><sup>h</sup></b>.</li>
+<li data-en="Take the first five normal neighbors of &lt;b&gt;h&lt;/b&gt; to form the 5-nearest-neighbor set &lt;b&gt;Z&lt;sub&gt;N5&lt;/sub&gt;&lt;sup&gt;h&lt;/sup&gt;&lt;/b&gt;." data-i18n="58" data-zh="选取 &lt;b&gt;h&lt;/b&gt; 的前 5 个正常邻居，构成 5 近邻集合 &lt;b&gt;Z&lt;sub&gt;N5&lt;/sub&gt;&lt;sup&gt;h&lt;/sup&gt;&lt;/b&gt;。">Take the first five normal neighbors of <b>h</b> to form the 5-nearest-neighbor set <b>Z<sub>N5</sub><sup>h</sup></b>.</li>
+<li data-en="Randomly pick a normal feature &lt;b&gt;u&lt;/b&gt; from the set, and draw an interpolation factor &lt;b&gt;λ&lt;/b&gt; from a Beta distribution Beta(α, β)." data-i18n="59" data-zh="从集合中随机选择一个正常特征 &lt;b&gt;u&lt;/b&gt;，并从 Beta(α, β) 分布中采样插值因子 &lt;b&gt;λ&lt;/b&gt;。">Randomly pick a normal feature <b>u</b> from the set, and draw an interpolation factor <b>λ</b> from a Beta distribution Beta(α, β).</li>
+<li data-en="Synthesize the new abnormal feature &lt;b&gt;h&lt;sub&gt;New&lt;/sub&gt; = h + λ(u − h) = (1 − λ)h + λu&lt;/b&gt;, which lies outside the region currently occupied by existing anomalies." data-i18n="60" data-zh="合成新异常特征 &lt;b&gt;h&lt;sub&gt;New&lt;/sub&gt; = h + λ(u − h) = (1 − λ)h + λu&lt;/b&gt;，使其位于现有异常区域之外。">Synthesize the new abnormal feature <b>h<sub>New</sub> = h + λ(u − h) = (1 − λ)h + λu</b>, which lies outside the region currently occupied by existing anomalies.</li>
+<li data-en="Iterate steps 1–4 until all classes are balanced in the training set; the module is active during training and deactivated at inference." data-i18n="61" data-zh="迭代执行步骤 1–4，直至训练集中各类特征数量均衡；该模块训练时激活、测试时关闭。">Iterate steps 1–4 until all classes are balanced in the training set; the module is active during training and deactivated at inference.</li>
+</ol>
+<div class="formula"><span class="fnum">MOOST</span>h<sub>New</sub> = h + λ(u − h) = (1 − λ)h + λu</div>
+<div class="formula"><span class="fnum">Beta(α,β)</span>φ(λ; α, β) = [ Γ(α+β) / ( Γ(α) Γ(β) ) ] · λ<sup>α−1</sup> (1 − λ)<sup>β−1</sup></div>
+<p class="lead" data-en="Finally, a &lt;b&gt;Softmax classifier (SMC)&lt;/b&gt; — a single linear layer with Softmax — is trained with binary cross-entropy on the balanced feature set to learn an unbiased decision boundary." data-i18n="62" data-zh="最后，&lt;b&gt;Softmax 分类器（SMC）&lt;/b&gt;（仅含一个带 Softmax 的线性层）在均衡特征集上以二值交叉熵训练，学习无偏的决策边界。">Finally, a <b>Softmax classifier (SMC)</b> — a single linear layer with Softmax — is trained with binary cross-entropy on the balanced feature set to learn an unbiased decision boundary.</p>
+</div></section>
+<!-- experiments -->
+<section class="section-alt" id="experiments"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="05 · Experiments" data-i18n="63" data-zh="05 · 实验">05 · Experiments</span>
+<h2 data-en="Experimental setup" data-i18n="64" data-zh="实验设置">Experimental setup</h2>
+</div>
+<p class="lead" data-en="The method is evaluated on a real-world dataset from &lt;b&gt;63 aero-engines of an Asian airline&lt;/b&gt;. The key characteristic parameters — delta exhaust-gas temperature (DEGT), delta high-pressure rotor speed (DN2), delta fuel flow (DFF), and exhaust-gas temperature margin (EGTM) — are turned into samples by a sliding window (step 10), giving &lt;b&gt;1017 samples (954 normal / 63 abnormal)&lt;/b&gt; split by five-fold cross-validation." data-i18n="65" data-zh="方法在&lt;b&gt;某亚洲航空公司 63 台航空发动机&lt;/b&gt;的真实数据集上评估。关键特征参数（DEGT、DN2、DFF、EGTM）经滑动窗口（步长 10）构造样本，得到 &lt;b&gt;1017 个样本（954 正常 / 63 异常）&lt;/b&gt;，并用五折交叉验证划分。">The method is evaluated on a real-world dataset from <b>63 aero-engines of an Asian airline</b>. The key characteristic parameters — delta exhaust-gas temperature (DEGT), delta high-pressure rotor speed (DN2), delta fuel flow (DFF), and exhaust-gas temperature margin (EGTM) — are turned into samples by a sliding window (step 10), giving <b>1017 samples (954 normal / 63 abnormal)</b> split by five-fold cross-validation.</p>
+<p class="lead" data-en="DSAFAN is compared against a &lt;b&gt;Baseline&lt;/b&gt; (deep self-attention network without re-sampling), six classical over-sampling methods (&lt;b&gt;SMOTE, BOS, SL-SMOTE, KM-SMOTE, SyMProD, SMOTEWB&lt;/b&gt;), and two deep generative methods (&lt;b&gt;TimeGAN, AugmentTS&lt;/b&gt;). Each fold is repeated 10 times; the mean TPR / TNR / BA is reported." data-i18n="66" data-zh="DSAFAN 与 &lt;b&gt;Baseline&lt;/b&gt;（无重采样的深度自注意力网络）、六种经典过采样方法（&lt;b&gt;SMOTE、BOS、SL-SMOTE、KM-SMOTE、SyMProD、SMOTEWB&lt;/b&gt;）及两种深度生成方法（&lt;b&gt;TimeGAN、AugmentTS&lt;/b&gt;）对比；每折重复 10 次，报告平均 TPR / TNR / BA。" style="margin-top:14px">DSAFAN is compared against a <b>Baseline</b> (deep self-attention network without re-sampling), six classical over-sampling methods (<b>SMOTE, BOS, SL-SMOTE, KM-SMOTE, SyMProD, SMOTEWB</b>), and two deep generative methods (<b>TimeGAN, AugmentTS</b>). Each fold is repeated 10 times; the mean TPR / TNR / BA is reported.</p>
+</div></section>
+<!-- results -->
+<section id="results"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="06 · Results" data-i18n="67" data-zh="06 · 结果">06 · Results</span>
+<h2 data-en="Results" data-i18n="68" data-zh="实验结果">Results</h2>
+<p class="lede" data-en="DSAFAN achieves the best comprehensive detection performance, dramatically narrowing the TPR–TNR gap that plagues imbalanced learning." data-i18n="69" data-zh="DSAFAN 取得了最佳综合检测性能，大幅缩小了不平衡学习中普遍存在的 TPR–TNR 差距。">DSAFAN achieves the best comprehensive detection performance, dramatically narrowing the TPR–TNR gap that plagues imbalanced learning.</p>
+</div>
+<figure class="figure"><button aria-label="Enlarge figure" class="figure-zoom" data-ui-aria="enlarge" type="button"><img alt="Fig. 5 — Average TPR (%), TNR (%), and BA (%) of different anomaly detection methods" decoding="async" height="451" loading="lazy" src="images/fig5-results-bar.jpg" width="792"/><span aria-hidden="true" class="zoom-icon">↗</span></button>
+<figcaption><span data-en="&lt;b&gt;Fig. 5&lt;/b&gt; — Average TPR (%), TNR (%), and BA (%) of the ten methods. DSAFAN (right) shows the highest BA and a balanced TPR/TNR." data-i18n="70" data-zh="&lt;b&gt;图 5&lt;/b&gt; — 十种方法的平均 TPR / TNR / BA (%)。DSAFAN（最右）BA 最高且 TPR/TNR 均衡。"><b>Fig. 5</b> — Average TPR (%), TNR (%), and BA (%) of the ten methods. DSAFAN (right) shows the highest BA and a balanced TPR/TNR.</span></figcaption>
+</figure>
+<p class="lead" data-en="DSAFAN's average &lt;b&gt;TPR of 89.09%&lt;/b&gt; far exceeds the baseline (70.65%) and the eight over-sampling methods — a &lt;b&gt;+14.04%&lt;/b&gt; gain over the second-ranked SL-SMOTE (75.05%). Its average &lt;b&gt;BA of 90.87%&lt;/b&gt; is the best of all ten methods; compared with the baseline, SMOTE, BOS, SL-SMOTE, KM-SMOTE, SyMProD, SMOTEWB, TimeGAN and AugmentTS, DSAFAN improves BA by &lt;b&gt;6.06% / 5.58% / 5.57% / 4.24% / 5.40% / 6.84% / 6.11% / 8.12% / 5.61%&lt;/b&gt; respectively." data-i18n="71" data-zh="DSAFAN 的平均 &lt;b&gt;TPR 达 89.09%&lt;/b&gt;，远超基线（70.65%）与八种过采样方法，较第二名 SL-SMOTE（75.05%）&lt;b&gt;提升 14.04%&lt;/b&gt;；平均 &lt;b&gt;BA 达 90.87%&lt;/b&gt;，为十种方法中最高——相比 Baseline、SMOTE、BOS、SL-SMOTE、KM-SMOTE、SyMProD、SMOTEWB、TimeGAN、AugmentTS 分别提升 &lt;b&gt;6.06% / 5.58% / 5.57% / 4.24% / 5.40% / 6.84% / 6.11% / 8.12% / 5.61%&lt;/b&gt;。">DSAFAN's average <b>TPR of 89.09%</b> far exceeds the baseline (70.65%) and the eight over-sampling methods — a <b>+14.04-percentage-point</b> gain over the second-ranked SL-SMOTE (75.05%). Its average <b>BA of 90.87%</b> is the best of all ten methods; compared with the baseline, SMOTE, BOS, SL-SMOTE, KM-SMOTE, SyMProD, SMOTEWB, TimeGAN and AugmentTS, DSAFAN improves BA by <b>6.06% / 5.58% / 5.57% / 4.24% / 5.40% / 6.84% / 6.11% / 8.12% / 5.61%</b> respectively.</p>
+<div class="table-title"><b data-en="Table 3" data-i18n="72" data-zh="表 3">Table 3</b> <span data-en="— Average TPR (%) of different anomaly detection methods (higher is better)." data-i18n="73" data-zh="— 不同异常检测方法的平均 TPR (%)（越高越好）。">— Average TPR (%) of different anomaly detection methods (higher is better).</span></div>
+<div class="table-scroll">
+<table aria-label="Experimental performance comparison" data-ui-aria="tableComparison" dir="ltr">
+<thead>
+<tr><th data-en="Method" data-i18n="74" data-zh="方法">Method</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th data-en="Average" data-i18n="75" data-zh="平均">Average</th></tr>
+</thead>
+<tbody>
+<tr><td>Baseline</td><td>86.15</td><td>75.38</td><td>79.23</td><td>59.17</td><td>53.33</td><td>70.65</td></tr>
+<tr><td>SMOTE</td><td>92.31</td><td>80.00</td><td>73.85</td><td>57.50</td><td>55.00</td><td>71.73</td></tr>
+<tr><td>BOS</td><td>92.31</td><td>80.77</td><td>75.38</td><td>54.17</td><td>55.83</td><td>71.69</td></tr>
+<tr><td>SL-SMOTE</td><td>84.62</td><td>79.23</td><td>73.08</td><td>62.50</td><td>75.83</td><td>75.05</td></tr>
+<tr><td>KM-SMOTE</td><td>86.92</td><td>79.23</td><td>77.69</td><td>59.17</td><td>57.50</td><td>72.10</td></tr>
+<tr><td>SyMProD</td><td>86.92</td><td>75.38</td><td>73.08</td><td>60.00</td><td>50.83</td><td>69.24</td></tr>
+<tr><td>SMOTEWB</td><td>88.46</td><td>73.85</td><td>79.23</td><td>59.17</td><td>52.50</td><td>70.64</td></tr>
+<tr><td>TimeGAN</td><td>86.15</td><td>73.85</td><td>63.08</td><td>55.83</td><td>55.83</td><td>66.95</td></tr>
+<tr><td>AugmentTS</td><td>81.54</td><td>70.77</td><td>73.85</td><td>68.33</td><td>63.33</td><td>71.56</td></tr>
+<tr class="best"><td>DSAFAN (ours)</td><td>92.31</td><td>90.00</td><td>92.31</td><td>84.17</td><td>86.67</td><td>89.09</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-title"><b data-en="Table 4" data-i18n="76" data-zh="表 4">Table 4</b> <span data-en="— Average TNR (%) of different anomaly detection methods." data-i18n="77" data-zh="— 不同异常检测方法的平均 TNR (%)。">— Average TNR (%) of different anomaly detection methods.</span></div>
+<div class="table-scroll">
+<table aria-label="Experimental performance comparison" data-ui-aria="tableComparison" dir="ltr">
+<thead>
+<tr><th data-en="Method" data-i18n="78" data-zh="方法">Method</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th data-en="Average" data-i18n="79" data-zh="平均">Average</th></tr>
+</thead>
+<tbody>
+<tr><td>Baseline</td><td>99.01</td><td>98.64</td><td>99.58</td><td>97.80</td><td>99.79</td><td>98.96</td></tr>
+<tr><td>SMOTE</td><td>99.11</td><td>98.74</td><td>99.32</td><td>97.54</td><td>99.58</td><td>98.85</td></tr>
+<tr><td>BOS</td><td>98.85</td><td>98.69</td><td>99.42</td><td>97.80</td><td>99.74</td><td>98.90</td></tr>
+<tr><td>SL-SMOTE</td><td>98.12</td><td>97.85</td><td>98.95</td><td>97.91</td><td>98.21</td><td>98.20</td></tr>
+<tr><td>KM-SMOTE</td><td>98.90</td><td>98.53</td><td>99.53</td><td>97.75</td><td>99.47</td><td>98.83</td></tr>
+<tr><td>SyMProD</td><td>99.16</td><td>98.69</td><td>99.58</td><td>97.70</td><td>98.95</td><td>98.82</td></tr>
+<tr><td>SMOTEWB</td><td>98.90</td><td>98.59</td><td>99.37</td><td>97.80</td><td>99.74</td><td>98.88</td></tr>
+<tr><td>TimeGAN</td><td>98.90</td><td>98.59</td><td>99.11</td><td>97.02</td><td>99.16</td><td>98.55</td></tr>
+<tr><td>AugmentTS</td><td>99.11</td><td>98.69</td><td>99.27</td><td>97.80</td><td>99.89</td><td>98.95</td></tr>
+<tr class="best"><td>DSAFAN (ours)</td><td>91.88</td><td>94.76</td><td>92.36</td><td>95.03</td><td>89.21</td><td>92.65</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-title"><b data-en="Table 5" data-i18n="80" data-zh="表 5">Table 5</b> <span data-en="— Average BA (%) of different anomaly detection methods." data-i18n="81" data-zh="— 不同异常检测方法的平均 BA (%)。">— Average BA (%) of different anomaly detection methods.</span></div>
+<div class="table-scroll">
+<table aria-label="Experimental performance comparison" data-ui-aria="tableComparison" dir="ltr">
+<thead>
+<tr><th data-en="Method" data-i18n="82" data-zh="方法">Method</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th data-en="Average" data-i18n="83" data-zh="平均">Average</th></tr>
+</thead>
+<tbody>
+<tr><td>Baseline</td><td>92.58</td><td>87.01</td><td>89.41</td><td>78.49</td><td>76.56</td><td>84.81</td></tr>
+<tr><td>SMOTE</td><td>95.71</td><td>89.37</td><td>86.59</td><td>77.52</td><td>77.29</td><td>85.29</td></tr>
+<tr><td>BOS</td><td>95.58</td><td>89.73</td><td>87.40</td><td>75.99</td><td>77.79</td><td>85.30</td></tr>
+<tr><td>SL-SMOTE</td><td>91.37</td><td>88.54</td><td>86.02</td><td>80.21</td><td>87.02</td><td>86.63</td></tr>
+<tr><td>KM-SMOTE</td><td>92.91</td><td>88.88</td><td>88.61</td><td>78.46</td><td>78.49</td><td>85.47</td></tr>
+<tr><td>SyMProD</td><td>93.04</td><td>87.04</td><td>86.33</td><td>78.85</td><td>74.89</td><td>84.03</td></tr>
+<tr><td>SMOTEWB</td><td>93.68</td><td>86.22</td><td>89.30</td><td>78.49</td><td>76.12</td><td>84.76</td></tr>
+<tr><td>TimeGAN</td><td>92.53</td><td>86.22</td><td>81.10</td><td>76.43</td><td>77.50</td><td>82.75</td></tr>
+<tr><td>AugmentTS</td><td>90.33</td><td>84.73</td><td>86.56</td><td>83.07</td><td>81.61</td><td>85.26</td></tr>
+<tr class="best"><td>DSAFAN (ours)</td><td>92.10</td><td>92.38</td><td>92.33</td><td>89.60</td><td>87.94</td><td>90.87</td></tr>
+</tbody>
+</table>
+</div>
+<figure class="figure"><button aria-label="Enlarge figure" class="figure-zoom" data-ui-aria="enlarge" type="button"><img alt="Fig. 6 — The probability density functions of Beta distributions with different distribution expectations" decoding="async" height="719" loading="lazy" src="images/fig6-beta-distributions.jpg" width="1042"/><span aria-hidden="true" class="zoom-icon">↗</span></button>
+<figcaption><span data-en="&lt;b&gt;Fig. 6&lt;/b&gt; — Beta-distribution probability density functions under different expectations (α, β). A larger expectation pushes synthetic samples closer to abnormal data, strengthening anomaly detection at the cost of normal detection — DSAFAN stays robust across all settings." data-i18n="84" data-zh="&lt;b&gt;图 6&lt;/b&gt; — 不同分布期望 (α, β) 下的 Beta 分布概率密度函数。期望越大，合成样本越靠近异常数据，异常检测能力越强而正常检测越弱——DSAFAN 在所有设置下均保持稳健。"><b>Fig. 6</b> — Beta-distribution probability density functions under different expectations (α, β). A larger expectation pushes synthetic samples closer to abnormal data, strengthening anomaly detection at the cost of normal detection — DSAFAN stays robust across all settings.</span></figcaption>
+</figure>
+<div class="cards">
+<div class="card">
+<span class="idx" data-en="LIMITATION · 01" data-i18n="85" data-zh="局限 · 01">LIMITATION · 01</span>
+<h3 data-en="TNR trade-off" data-i18n="86" data-zh="TNR 的权衡">TNR trade-off</h3>
+<p data-en="DSAFAN's average TNR (92.65%) is below the baseline (98.96%) — a deliberate bias–robustness trade-off: it trades some normal-detection accuracy for a far stronger anomaly detection, which matters more for safety-critical aero-engines." data-i18n="87" data-zh="DSAFAN 的平均 TNR（92.65%）低于基线（98.96%）——这是一项有意的偏差–鲁棒性权衡：牺牲部分正常识别精度，换取对安全关键的航空发动机更重要的更强异常检测。">DSAFAN's average TNR (92.65%) is below the baseline (98.96%) — a deliberate bias–robustness trade-off: it trades some normal-detection accuracy for a far stronger anomaly detection, which matters more for safety-critical aero-engines.</p>
+</div>
+<div class="card">
+<span class="idx" data-en="LIMITATION · 02" data-i18n="88" data-zh="局限 · 02">LIMITATION · 02</span>
+<h3 data-en="Private dataset" data-i18n="89" data-zh="私有数据集">Private dataset</h3>
+<p data-en="Evaluation uses proprietary airline operation data; the data will be made available on request, and no public benchmark or code repository is released with the paper." data-i18n="90" data-zh="评估使用某航空公司的私有运行数据，数据可应要求提供；论文未公开基准数据集或代码仓库。">Evaluation uses proprietary airline operation data; the data will be made available on request, and no public benchmark or code repository is released with the paper.</p>
+</div>
+<div class="card">
+<span class="idx" data-ui="future">FUTURE WORK</span>
+<h3 data-en="Feature-level over-sampling" data-i18n="91" data-zh="特征级过采样">Feature-level over-sampling</h3>
+<p data-en="Future efforts will focus on discovering feature-level over-sampling methods to further improve anomaly-detection accuracy for imbalanced high-end equipment." data-i18n="92" data-zh="未来工作将聚焦于特征级过采样方法，以进一步提升高端装备不平衡异常检测的精度。">Future efforts will focus on discovering feature-level over-sampling methods to further improve anomaly-detection accuracy for imbalanced high-end equipment.</p>
+</div>
+</div>
+</div></section>
+<!-- citation -->
+<section class="section-alt" id="bibtex"><div class="wrap section-inner">
+<div class="sec-head">
+<span class="sec-num" data-en="07 · Citation" data-i18n="93" data-zh="07 · 引用">07 · Citation</span>
+<h2 data-en="Cite this work" data-i18n="94" data-zh="引用本文">Cite this work</h2>
+<p class="lede">
+<span data-en="Full citation: &lt;b&gt;Liu, D., Gao, H., Lin, L., Fu, S., Zhao, M., &amp; Zhong, S.&lt;/b&gt; (2026). A novel majority-oriented over-sampling technique and its application in imbalanced anomaly detection of aero-engines. &lt;i&gt;Reliability Engineering &amp; System Safety&lt;/i&gt;, 274, 112377." data-i18n="95" data-zh="完整引用：&lt;b&gt;Liu, D., Gao, H., Lin, L., Fu, S., Zhao, M., &amp; Zhong, S.&lt;/b&gt; (2026). A novel majority-oriented over-sampling technique and its application in imbalanced anomaly detection of aero-engines. &lt;i&gt;Reliability Engineering &amp; System Safety&lt;/i&gt;, 274, 112377.">Full citation: <b>Liu, D., Gao, H., Lin, L., Fu, S., Zhao, M., &amp; Zhong, S.</b> (2026). A novel majority-oriented over-sampling technique and its application in imbalanced anomaly detection of aero-engines. <i>Reliability Engineering &amp; System Safety</i>, 274, 112377.</span>
+</p>
+</div>
+<div class="bib-wrap">
+<button class="copy-btn" data-en="Copy" data-i18n="96" data-zh="复制" onclick="copyBib()" type="button">Copy</button>
+<pre class="bib" dir="ltr" id="bibtex-code" lang="en">@article{Liu2026MOOST,
+  title     = {A novel majority-oriented over-sampling technique and its
+               application in imbalanced anomaly detection of aero-engines},
+  author    = {Liu, Dan and Gao, Haibo and Lin, Lin and Fu, Song and
+               Zhao, Minghang and Zhong, Shisheng},
+  journal   = {Reliability Engineering \&amp; System Safety},
+  volume    = {274},
+  pages     = {112377},
+  year      = {2026},
+  publisher = {Elsevier},
+  issn      = {0951-8320},
+  doi       = {10.1016/j.ress.2026.112377}
+}</pre>
+</div>
+<p style="margin-top:18px;font-size:14px;color:var(--muted)">
+<span data-en="DOI:" data-i18n="97" data-zh="DOI：">DOI:</span>
+<a href="https://doi.org/10.1016/j.ress.2026.112377" rel="noopener" style="font-family:var(--mono)" target="_blank">10.1016/j.ress.2026.112377</a>
+       · 
+      <a href="https://www.sciencedirect.com/science/article/pii/S0951832026001936" rel="noopener" target="_blank">ScienceDirect</a>
+</p>
+</div></section>
+</main>
+<footer>
+<p>
+<span data-en="MOOST · DSAFAN — Aero-Engine Anomaly Detection" data-i18n="98" data-zh="MOOST · DSAFAN — 航空发动机异常检测">MOOST · DSAFAN — Aero-Engine Anomaly Detection</span>
+     ·  Reliability Engineering &amp; System Safety, Vol. 274, 2026
+  </p>
+<p style="margin-top:8px">
+    DOI: <span class="doi">10.1016/j.ress.2026.112377</span>
+     ·  <span data-en="Figures and data reproduced from the original paper." data-i18n="99" data-zh="图表与数据均引自原论文。">Figures and data reproduced from the original paper.</span>
+</p>
+</footer>
+<dialog aria-label="Expanded figure" class="figure-dialog" data-ui-aria="figurePreview" id="figure-dialog"><div class="dialog-top"><span data-ui="figurePreview">Figure preview</span><button aria-label="Close image" class="dialog-close" data-ui-aria="close" type="button">×</button></div><div class="dialog-body"><img alt="" id="dialog-image"/><p id="dialog-caption"></p></div></dialog><script defer="True" src="assets/i18n.js"></script><script defer="True" src="assets/site.js"></script></body>
+</html>

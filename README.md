@@ -3,7 +3,7 @@
 ## Public website / 公开访问
 
 - **科研主页 / Research website:** [[https://liudan518.github.io/MOOST](https://liudan518.github.io/MOOST/)/]
-- **论文 PDF / Paper PDF:** [https://liudan518.github.io/MOOST/paper.pdf](https://liudan518.github.io/MOOST/paper.pdf)
+- **论文 PDF / Paper PDF:** [[https://liudan518.github.io/MOOST/paper.pdf](https://liudan518.github.io/MOOST/paper.pdf)/]
 
 GitHub Pages deployment source: `main`, `/ (root)`. Updates pushed to `main` are published automatically after Pages is enabled.
 

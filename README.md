@@ -2,8 +2,8 @@
 
 ## Public website / 公开访问
 
-网址：https://liudan518.github.io/MOOST/
-PDF网址：MOOST A Majority-Oriented Over-Sampling Technique for Aero-Engine Anomaly Detection.pdf
+- **科研主页 / Research website:** [[https://liudan518.github.io/MOOST](https://liudan518.github.io/MOOST/)/]
+- **论文 PDF / Paper PDF:** [https://liudan518.github.io/MOOST/paper.pdf](https://liudan518.github.io/MOOST/paper.pdf)
 
 GitHub Pages deployment source: `main`, `/ (root)`. Updates pushed to `main` are published automatically after Pages is enabled.
 
